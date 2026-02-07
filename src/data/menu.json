@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "category": "Starters",
+    "name": "Chicken Soup",
+    "description": "Hot and spicy chicken soup",
+    "price": 120,
+    "image": "/images/soup.jpg"
+  },
+  {
+    "id": 2,
+    "category": "Starters",
+    "name": "Veg Spring Roll",
+    "description": "Crispy rolls stuffed with veggies",
+    "price": 100,
+    "image": "/images/springroll.jpg"
+  },
+  {
+    "id": 3,
+    "category": "Main Course",
+    "name": "Chicken Biryani",
+    "description": "Aromatic rice with chicken and spices",
+    "price": 180,
+    "image": "/images/biryani.jpg"
+  },
+  {
+    "id": 4,
+    "category": "Desserts",
+    "name": "Gulab Jamun",
+    "description": "Sweet milk dumplings soaked in syrup",
+    "price": 80,
+    "image": "/images/gulabjamun.jpg"
+  },
+  {
+    "id": 5,
+    "category": "Beverages",
+    "name": "Lime Juice",
+    "description": "Fresh lime juice with mint",
+    "price": 60,
+    "image": "/images/lime.jpg"
+  }
+]

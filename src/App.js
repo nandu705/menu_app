@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import menuData from "./data/menu.json";
 
-function App() {
+import Menu from "./components/Menu";
+import Navbar from "./components/Navbar";
+
+export default function App() {
+  const [cart, setCart] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // Extract unique categories
+  const categories = [...new Set(menuData.map((item) => item.category))];
+
+  // Filter items based on category
+  const filteredItems =
+    selectedCategory === "All"
+      ? menuData
+      : menuData.filter((item) => item.category === selectedCategory);
+
+  // Add to cart function
+  const addToCart = (item) => {
+    const found = cart.find((i) => i.id === item.id);
+
+    if (found) {
+      setCart(
+        cart.map((i) =>
+          i.id === item.id ? { ...i, qty: i.qty + 1 } : i
+        )
+      );
+    } else {
+      setCart([...cart, { ...item, qty: 1 }]);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Menu (Only ONE time) */}
+      <div style={{ padding: "30px" }}>
+        <Menu
+          items={filteredItems}
+          addToCart={addToCart}
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+      </div>
     </div>
   );
 }
-
-export default App;
