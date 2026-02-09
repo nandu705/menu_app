@@ -1,20 +1,38 @@
-export default function Navbar() {
+export default function Navbar({
+  categories = [],
+  selectedCategory,
+  setSelectedCategory
+}) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
       
-      {/* Left Side: Brand */}
+      {/* Left Side */}
       <span className="navbar-brand fw-bold">
-  My Restaurant
-</span>
-
+        My Restaurant
+      </span>
 
       {/* Right Side */}
-      <div className="ms-auto d-flex gap-4 align-items-center">
-        
-        <span style={{ cursor: "pointer" }}>Category</span>
+      <div className="ms-auto d-flex gap-3 align-items-center">
 
+        {/* Categories */}
+        {["All", ...categories].map((cat, index) => (
+          <span
+            key={index}
+            onClick={() => setSelectedCategory(cat)}
+            style={{
+              cursor: "pointer",
+              fontWeight: selectedCategory === cat ? "700" : "500",
+              borderBottom:
+                selectedCategory === cat ? "2px solid black" : "none",
+              paddingBottom: "2px"
+            }}
+          >
+            {cat}
+          </span>
+        ))}
+
+        {/* Icons */}
         <span style={{ cursor: "pointer", fontSize: "20px" }}>🛒</span>
-
         <span style={{ cursor: "pointer", fontSize: "20px" }}>🔍</span>
       </div>
     </nav>

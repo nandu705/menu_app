@@ -8,16 +8,16 @@ export default function App() {
   const [cart, setCart] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Extract unique categories
+  // Categories
   const categories = [...new Set(menuData.map((item) => item.category))];
 
-  // Filter items based on category
+  // Filtering
   const filteredItems =
     selectedCategory === "All"
       ? menuData
       : menuData.filter((item) => item.category === selectedCategory);
 
-  // Add to cart function
+  // Cart function
   const addToCart = (item) => {
     const found = cart.find((i) => i.id === item.id);
 
@@ -35,17 +35,15 @@ export default function App() {
   return (
     <div>
       {/* Navbar */}
-      <Navbar />
+      <Navbar
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
 
-      {/* Menu (Only ONE time) */}
+      {/* Menu */}
       <div style={{ padding: "30px" }}>
-        <Menu
-          items={filteredItems}
-          addToCart={addToCart}
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
+        <Menu items={filteredItems} addToCart={addToCart} />
       </div>
     </div>
   );
