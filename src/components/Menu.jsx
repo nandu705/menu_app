@@ -24,20 +24,22 @@ export default function Menu({
           All
         </button>
 
-        {categories.map((cat, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedCategory(cat)}
-            style={{
-              marginRight: "10px",
-              padding: "6px 12px",
-              cursor: "pointer",
-              fontWeight: selectedCategory === cat ? "bold" : "normal"
-            }}
-          >
-            {cat}
-          </button>
-        ))}
+        {categories
+          .filter((cat) => cat !== "All")
+          .map((cat, index) => (
+            <button
+              key={index}
+              onClick={() => setSelectedCategory(cat)}
+              style={{
+                marginRight: "10px",
+                padding: "6px 12px",
+                cursor: "pointer",
+                fontWeight: selectedCategory === cat ? "bold" : "normal"
+              }}
+            >
+              {cat}
+            </button>
+          ))}
       </div>
 
       {/* MENU ITEMS */}
