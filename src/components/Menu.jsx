@@ -1,7 +1,45 @@
-export default function Menu({ items = [], addToCart }) {
+export default function Menu({
+  items = [],
+  addToCart,
+  categories = [],
+  selectedCategory,
+  setSelectedCategory
+}) {
   return (
     <div>
       <h2 style={{ marginBottom: "15px" }}>Restaurant Menu</h2>
+
+      {/* CATEGORY HEADER */}
+      <div style={{ marginBottom: "20px" }}>
+        <button
+          onClick={() => setSelectedCategory("All")}
+          style={{
+            marginRight: "10px",
+            padding: "6px 12px",
+            cursor: "pointer",
+            fontWeight: selectedCategory === "All" ? "bold" : "normal"
+          }}
+        >
+          All
+        </button>
+
+        {categories
+          .filter((cat) => cat !== "All")
+          .map((cat, index) => (
+            <button
+              key={index}
+              onClick={() => setSelectedCategory(cat)}
+              style={{
+                marginRight: "10px",
+                padding: "6px 12px",
+                cursor: "pointer",
+                fontWeight: selectedCategory === cat ? "bold" : "normal"
+              }}
+            >
+              {cat}
+            </button>
+          ))}
+      </div>
 
       {/* MENU ITEMS */}
       <div

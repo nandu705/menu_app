@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Navbar({
   categories = [],
   selectedCategory,
@@ -5,8 +7,7 @@ export default function Navbar({
 }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
-      
-      {/* Left Side */}
+      {/* Left Side: Brand */}
       <span className="navbar-brand fw-bold">
         My Restaurant
       </span>
@@ -31,8 +32,12 @@ export default function Navbar({
           </span>
         ))}
 
-        {/* Icons */}
-        <span style={{ cursor: "pointer", fontSize: "20px" }}>🛒</span>
+        {/* Cart link */}
+        <Link to="/cart" style={{ textDecoration: "none", fontSize: "20px" }}>
+          🛒
+        </Link>
+
+        {/* Search Icon */}
         <span style={{ cursor: "pointer", fontSize: "20px" }}>🔍</span>
       </div>
     </nav>
