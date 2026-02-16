@@ -91,7 +91,11 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
 
       <Routes>
         <Route
