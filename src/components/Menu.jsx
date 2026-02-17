@@ -1,56 +1,36 @@
-export default function Menu({
-  items = [],
-  addToCart,
-  categories = [],
-  selectedCategory,
-  setSelectedCategory
-}) 
- {
+export default function Menu({ items = [], addToCart }) {
   return (
-    <div>
-      <h2 style={{ marginBottom: "15px" }}>Restaurant Menu</h2>
+    <div className="container my-3">
+      <h2 className="text-center mb-4">Restaurant Menu</h2>
 
-      {/* MENU ITEMS */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "20px"
-        }}
-      >
+      <div className="row g-3">
         {items.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "10px"
-            }}
-          >
-            {/* IMAGE FIX */}
-            <img
-              src={item.image}
-              alt={item.name}
-              width="100%"
-              height="150"
-              style={{
-                objectFit: "contain",   // ✅ no cutting
-                background: "#f2f2f2"
-              }}
-            />
+          <div key={item.id} className="col-12 col-md-6 col-lg-4">
+            <div className="card h-100">
+              {/* Image */}
+              <img
+                src={item.image}
+                alt={item.name}
+                className="card-img-top"
+                style={{ objectFit: "contain", height: "180px", background: "#f2f2f2" }}
+              />
 
-            <p>
-              <b>{item.category}</b>
-            </p>
+              {/* Body */}
+              <div className="card-body d-flex flex-column">
+                <p className="mb-1"><b>{item.category}</b></p>
+                <h5 className="card-title">{item.name}</h5>
+                <p className="card-text">{item.description}</p>
+                <h6>₹{item.price}</h6>
 
-            <h3>{item.name}</h3>
-
-            <p>{item.description}</p>
-
-            <h4>₹{item.price}</h4>
-
-            <button onClick={() => addToCart(item)}>
-              Add to Cart
-            </button>
+                {/* Button at bottom */}
+                <button
+                  className="btn btn-dark mt-auto"
+                  onClick={() => addToCart(item)}
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>

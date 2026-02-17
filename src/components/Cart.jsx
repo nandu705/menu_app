@@ -1,72 +1,101 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PlaceOrderModal from "./PlaceOrderModal";
+
 export default function Cart({ cart, setCart }) {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
-  const increase = (id) => {
-    setCart(cart.map(i =>
-      i.id === id ? { ...i, qty: i.qty + 1 } : i
-    ));
+  const increase = (id) =>
+    setCart(cart.map((i) => (i.id === id ? { ...i, qty: i.qty + 1 } : i)));
+
+  const decrease = (id) =>
+    setCart(
+      cart.map((i) =>
+        i.id === id && i.qty > 1 ? { ...i, qty: i.qty - 1 } : i
+      )
+    );
+
+  const remove = (id) => setCart(cart.filter((i) => i.id !== id));
+
+  const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+  const handleSubmitOrder = (customerDetails) => {
+    console.log("Order Details:", {
+      customerDetails,
+      items: cart,
+      total,
+      dateTime: new Date().toLocaleString(),
+    });
+    alert("✅ Order placed successfully!");
+    setCart([]);
+    setShowModal(false);
+    navigate("/");
   };
-
-  const decrease = (id) => {
-    setCart(cart.map(i =>
-      i.id === id && i.qty > 1
-        ? { ...i, qty: i.qty - 1 }
-        : i
-    ));
-  };
-
-  const remove = (id) => {
-    setCart(cart.filter(i => i.id !== id));
-  };
-
-  const total = cart.reduce(
-    (sum, i) => sum + i.price * i.qty,
-    0
-  );
 
   return (
-    <div style={{ padding: "30px" }}>
-      <h2>Your Cart</h2>
+    <div className="container py-3">
+      <h2 className="mb-4">Your Cart</h2>
 
-      {cart.map(item => (
-        <div
-          key={item.id}
-          style={{
-            display: "flex",
-            gap: "20px",
-            border: "1px solid #ccc",
-            padding: "15px",
-            marginBottom: "15px",
-            alignItems: "center"
-          }}
-        >
-          {/* IMAGE */}
-          <img
-            src={item.image}
-            alt={item.name}
-            width="120"
-            height="90"
-            style={{ objectFit: "contain", background: "#f2f2f2" }}
-          />
+      {cart.length === 0 ? (
+        <p>No items in cart.</p>
+      ) : (
+        <>
+          {cart.map((item) => (
+            <div
+              key={item.id}
+              className="row align-items-center mb-3 p-2 border"
+            >
+              {/* Image */}
+              <div className="col-12 col-md-2 mb-2 mb-md-0">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="img-fluid"
+                  style={{ background: "#f2f2f2", objectFit: "contain" }}
+                />
+              </div>
 
-          {/* DETAILS */}
-          <div style={{ flex: 1 }}>
-            <h4>{item.name}</h4>
-            <p>₹{item.price}</p>
+              {/* Details + Qty */}
+              <div className="col-12 col-md-7 mb-2 mb-md-0">
+                <h5>{item.name}</h5>
+                <p>₹{item.price}</p>
+                <div className="d-flex gap-2 align-items-center">
+                  <button onClick={() => decrease(item.id)}>-</button>
+                  <b>{item.qty}</b>
+                  <button onClick={() => increase(item.id)}>+</button>
+                  <button onClick={() => remove(item.id)}>🗑</button>
+                </div>
+              </div>
 
-            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-              <button onClick={() => decrease(item.id)}>-</button>
-              <b>{item.qty}</b>
-              <button onClick={() => increase(item.id)}>+</button>
-              <button onClick={() => remove(item.id)}>🗑</button>
+              {/* Item Total */}
+              <div className="col-12 col-md-3 text-md-end">
+                <h5>₹{item.price * item.qty}</h5>
+              </div>
             </div>
+          ))}
+
+          {/* Total & Place Order */}
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mt-4">
+            <h3>Total: ₹{total}</h3>
+            <button
+              onClick={() => setShowModal(true)}
+              className="btn btn-dark mt-2 mt-md-0"
+            >
+              Place Order
+            </button>
           </div>
+        </>
+      )}
 
-          {/* ITEM TOTAL */}
-          <h4>₹{item.price * item.qty}</h4>
-        </div>
-      ))}
-
-      <h2>Total: ₹{total}</h2>
+      {showModal && (
+        <PlaceOrderModal
+          cart={cart}
+          totalPrice={total}
+          onClose={() => setShowModal(false)}
+          onSubmit={handleSubmitOrder}
+        />
+      )}
     </div>
   );
 }
