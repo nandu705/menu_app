@@ -36,3 +36,80 @@
     transform: rotate(360deg);
   }
 }
+
+/* Responsive tweaks for mobile layout */
+/* Navbar: allow categories to wrap or scroll horizontally */
+.nav-cats {
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  /* Reduce navbar padding and font sizes */
+  .navbar {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .navbar-brand {
+    font-size: 1.15rem;
+  }
+
+  /* Make the category list horizontally scrollable if too many items */
+  .nav-cats {
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    padding-bottom: 6px;
+  }
+
+  .nav-cats > span,
+  .nav-cats a {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    padding-right: 8px;
+  }
+
+  /* Menu container: reduce horizontal padding */
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* Card image: reduce height on small screens */
+  .card-img-top {
+    height: 140px !important;
+    object-fit: cover !important;
+  }
+
+  /* Make buttons easier to tap */
+  .btn {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  /* Modal width: use nearly full width on mobile */
+  .place-order-modal,
+  .modal,
+  .modal-dialog,
+  .modal-content {
+    width: 100% !important;
+  }
+
+  /* PlaceOrderModal inline styles: target generic modal container width via selector */
+  div[style][style*="modal"] {
+    width: 90% !important;
+    margin: 0 5% !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .card-img-top {
+    height: 120px !important;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+  }
+}

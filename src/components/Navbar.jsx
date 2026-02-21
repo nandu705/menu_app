@@ -33,7 +33,7 @@ export default function Navbar({
       <span className="navbar-brand fw-bold">My Restaurant</span>
 
       {/* Right Side */}
-      <div className="ms-auto d-flex gap-3 align-items-center">
+      <div className="ms-auto d-flex gap-3 align-items-center nav-cats">
 
         {/* Categories */}
         {categories.map((cat, index) => (
