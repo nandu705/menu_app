@@ -1,42 +1,119 @@
-[
-  {
-    "id": 1,
-    "category": "Starters",
-    "name": "Chicken Soup",
-    "description": "Hot and spicy chicken soup",
-    "price": 120,
-    "image": "/images/soup.jpg"
-  },
-  {
-    "id": 2,
-    "category": "Starters",
-    "name": "Veg Spring Roll",
-    "description": "Crispy rolls stuffed with veggies",
-    "price": 100,
-    "image": "/images/springroll.jpg"
-  },
-  {
-    "id": 3,
-    "category": "Main Course",
-    "name": "Chicken Biryani",
-    "description": "Aromatic rice with chicken and spices",
-    "price": 180,
-    "image": "/images/biryani.jpg"
-  },
-  {
-    "id": 4,
-    "category": "Desserts",
-    "name": "Gulab Jamun",
-    "description": "Sweet milk dumplings soaked in syrup",
-    "price": 80,
-    "image": "/images/gulabjamun.jpg"
-  },
-  {
-    "id": 5,
-    "category": "Beverages",
-    "name": "Lime Juice",
-    "description": "Fresh lime juice with mint",
-    "price": 60,
-    "image": "/images/lime.jpg"
-  }
-]
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Starters",
+      "items": [
+        {
+          "id": 101,
+          "name": "Veg Soup",
+          "price": 80,
+          "image": "/images/soup.jpg",
+          "description": "A healthy and delicious vegetable soup made with fresh seasonal veggies."
+        },
+        {
+          "id": 102,
+          "name": "Paneer Tikka",
+          "price": 150,
+          "image": "/images/paneertikka.jpg",
+          "description": "Marinated paneer cubes grilled to perfection with spices."
+        },
+        {
+          "id": 103,
+          "name": "Chicken 65",
+          "price": 180,
+          "image": "/images/chicken65.jpg",
+          "description": "Spicy, deep-fried chicken pieces with curry leaves and chilies."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Main Course",
+      "items": [
+        {
+          "id": 201,
+          "name": "Biriyani",
+          "price": 120,
+          "image": "/images/biryani.jpg",
+          "description": "Authentic aromatic basmati rice cooked with spices and herbs."
+        },
+        {
+          "id": 202,
+          "name": "Spring Rolls",
+          "price": 120,
+          "image": "/images/springroll.jpg",
+          "description": "Crispy fried rolls filled with seasoned vegetables."
+        },
+        {
+          "id": 205,
+          "name": "Butter Chicken",
+          "price": 220,
+          "image": "/images/butterchicken.jpg",
+          "description": "Creamy tomato-based gravy with tender grilled chicken pieces."
+        },
+        {
+          "id": 206,
+          "name": "Fried Rice",
+          "price": 140,
+          "image": "/images/Veg Fried Rice.jpg",
+          "description": "Stir-fried rice with colorful vegetables and soy sauce."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Desserts",
+      "items": [
+        {
+          "id": 204,
+          "name": "Gulab Jamun",
+          "price": 120,
+          "image": "/images/gulabjamun.jpg",
+          "description": "Soft and spongy milk-based sweets soaked in sugar syrup."
+        },
+        {
+          "id": 301,
+          "name": "Ice Cream",
+          "price": 90,
+          "image": "/images/icecream.jpg",
+          "description": "Classic vanilla scoop served with chocolate drizzle."
+        },
+        {
+          "id": 302,
+          "name": "Brownie",
+          "price": 150,
+          "image": "/images/brownie.jpg",
+          "description": "Rich chocolate brownie served warm and fudgy."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Drinks",
+      "items": [
+        {
+          "id": 203,
+          "name": "Lime",
+          "price": 120,
+          "image": "/images/lime.jpg",
+          "description": "Refreshing fresh lime juice to cool you down."
+        },
+        {
+          "id": 401,
+          "name": "Cold Coffee",
+          "price": 110,
+          "image": "/images/coldcoffee.jpg",
+          "description": "Chilled blended coffee with milk and a hint of chocolate."
+        },
+        {
+          "id": 402,
+          "name": "Mango Lassi",
+          "price": 130,
+          "image": "/images/lassi.jpg",
+          "description": "Traditional thick yogurt drink blended with sweet mangoes."
+        }
+      ]
+    }
+  ]
+}

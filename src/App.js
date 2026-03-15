@@ -12,16 +12,24 @@ export default function App() {
   const [toast, setToast] = useState({ visible: false, message: "" });
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Categories list
-  const categories = ["All", ...new Set(menuData.map((item) => item.category))];
+  // ✅ Flatten nested JSON (categories → items)
+  const flatMenu = menuData.categories.flatMap((cat) =>
+    cat.items.map((item) => ({
+      ...item,
+      category: cat.name,
+    }))
+  );
 
-  // Filter items
+  // ✅ Categories list
+  const categories = ["All", ...new Set(flatMenu.map((item) => item.category))];
+
+  // ✅ Filter items
   const filteredItems =
     selectedCategory === "All"
-      ? menuData
-      : menuData.filter((item) => item.category === selectedCategory);
+      ? flatMenu
+      : flatMenu.filter((item) => item.category === selectedCategory);
 
-  // Add to cart
+  // ✅ Add to cart
   const addToCart = (item) => {
     const found = cart.find((i) => i.id === item.id);
 

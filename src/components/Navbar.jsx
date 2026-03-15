@@ -1,25 +1,3 @@
-// export default function Navbar() {
-//   return (
-//     <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
-      
-//       {/* Left Side: Brand */}
-//       <span className="navbar-brand fw-bold">
-//   My Restaurant
-// </span>
-
-
-//       {/* Right Side */}
-//       <div className="ms-auto d-flex gap-4 align-items-center">
-        
-//         <span style={{ cursor: "pointer" }}>Category</span>
-
-//         <span style={{ cursor: "pointer", fontSize: "20px" }}>🛒</span>
-
-//         <span style={{ cursor: "pointer", fontSize: "20px" }}>🔍</span>
-//       </div>
-//     </nav>
-//   );
-// }
 import { Link } from "react-router-dom";
 
 export default function Navbar({
@@ -28,37 +6,61 @@ export default function Navbar({
   setSelectedCategory = () => {}
 }) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
-      {/* Left Side: Brand */}
-      <span className="navbar-brand fw-bold">My Restaurant</span>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light px-3">
+      <div className="container-fluid">
+        {/* Brand */}
+        <span className="navbar-brand fw-bold">My Restaurant</span>
 
-      {/* Right Side */}
-      <div className="ms-auto d-flex gap-3 align-items-center">
+        {/* Toggle for mobile */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-        {/* Categories */}
-        {categories.map((cat, index) => (
-          <span
-            key={index}
-            onClick={() => setSelectedCategory(cat)}
-            style={{
-              cursor: "pointer",
-              fontWeight: selectedCategory === cat ? "700" : "500",
-              borderBottom: selectedCategory === cat ? "2px solid black" : "none",
-              paddingBottom: "2px"
-            }}
-          >
-            {cat}
-          </span>
-        ))}
+        {/* Collapsible Content */}
+        <div className="collapse navbar-collapse" id="navbarContent">
+          <div className="row w-100 align-items-center gx-2">
+            {/* Categories */}
+            {categories.map((cat, index) => (
+              <div
+                key={index}
+                className="col-12 col-sm-auto col-md-auto col-lg-auto col-xl-auto col-xxl-auto"
+              >
+                <span
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`d-block px-2 py-1 rounded text-center ${
+                    selectedCategory === cat ? "fw-bold border-bottom border-dark" : ""
+                  }`}
+                  style={{ cursor: "pointer" }}
+                >
+                  {cat}
+                </span>
+              </div>
+            ))}
 
-        {/* Cart link */}
-        <Link to="/cart" style={{ textDecoration: "none", fontSize: "20px" }}>
-          🛒
-        </Link>
+            {/* Cart Icon */}
+            <div className="col-12 col-sm-auto col-md-auto col-lg-auto col-xl-auto col-xxl-auto">
+              <Link to="/cart" className="d-block text-center fs-5 text-decoration-none">
+                🛒
+              </Link>
+            </div>
 
-        <span style={{ cursor: "pointer", fontSize: "20px" }}>🔍</span>
+            {/* Search Icon */}
+            <div className="col-12 col-sm-auto col-md-auto col-lg-auto col-xl-auto col-xxl-auto">
+              <span className="d-block text-center fs-5" style={{ cursor: "pointer" }}>
+                🔍
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   );
 }
-
